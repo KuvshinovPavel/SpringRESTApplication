@@ -1,0 +1,126 @@
+* {
+    margin: 0;
+    padding: 0;
+    /*box-sizing: border-box;*/
+}
+#sorting{
+    margin: 100px 20px 20px;
+}
+main {
+    margin: 20px 20px;
+}
+
+body {
+    color: #444444;
+    font-family: 'Roboto Slab', sans-serif;
+    line-height: 1.6;
+    font-size: 90%;
+}
+
+.row {
+    display: flex; /* включение технологии flexbox */
+    flex-direction: row; /* колонки в ряду */
+
+    justify-content: center; /* колонки в центре контейнера */
+    flex-wrap: nowrap; /* держать колонки в ряду */
+
+}
+
+.column {
+    display: flex;  /* одинаковая высота колонок */
+    /*width: 33.33%;*/
+
+    min-width: 50%;
+    max-width: 50%;
+    padding: 5px;
+}
+
+.card {
+    border: 1px solid #efefef;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+    transition: all .3s ease;
+    padding-bottom: 20px;
+
+    min-width: 100%;
+
+}
+
+.card:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6);
+}
+
+img {
+    width: 100%;
+}
+
+.card-content {
+    padding: 0 20px;
+}
+
+a {
+    color: #444444;
+    text-decoration: none;
+    transition: all .3s ease;
+
+
+}
+
+.card-content .fa, span {
+    font-size: 80%;
+}
+
+.card h2 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    color: #00A19D;
+    font-size: 130%;
+    line-height: 1.2;
+}
+
+.card p {
+    margin: 10px 0 10px;
+    color: #666666;
+
+}
+.options {
+    display: flex;
+    flex-direction:row ;
+}
+
+.option {
+    width: 50%;
+    display: block;
+    background: #a7c1cf;
+    padding: 10px 15px;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 700;
+    text-align: center;
+}
+
+
+.edit:hover {
+    background: #008000B5;
+}
+
+.delete:hover{
+    background: #f76270;
+}
+
+.hidden-span{
+    opacity: 0;
+}
+
+@media screen and (max-width: 640px) {
+    .row {
+        flex-direction: column; /* в ряду останется одна колонка */
+        flex-wrap: wrap; /* разрешен перенос колонок */
+    }
+    .column {
+        width: 100%; /* новая ширина колонки */
+        margin-bottom: 20px;
+    }
+}
+
+
