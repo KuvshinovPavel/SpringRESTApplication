@@ -1,29 +1,11 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+import {Popup} from "./Popup.js";
+const updateButton = document.getElementById('update');
 
 function getListOfNotes(){
     fetch('http://localhost:8080/api/note')
         .then(response => response.json())
         .then(json =>json.forEach(x=>createNote(x.noteId,x.header,x.text,x.date)))
 }
-
-
 
 export function createNote(id,header,text,date  = new Date()){
 
@@ -51,6 +33,7 @@ export function createNote(id,header,text,date  = new Date()){
     optionDelete.classList.add('delete');
     optionDelete.href='#';
     optionDelete.innerText='Delete';
+
     optionDelete.addEventListener('click',(e)=>{
         let note = e.target.closest('.row');
 
@@ -61,6 +44,7 @@ export function createNote(id,header,text,date  = new Date()){
         note.remove();
         e.preventDefault();
     })
+
     let noteId = document.createElement('span')
      noteId.classList.add('hidden-span');
     noteId.innerText=id;
@@ -68,8 +52,64 @@ export function createNote(id,header,text,date  = new Date()){
     let optionEdit=document.createElement('a');
     optionEdit.classList.add('option');
     optionEdit.classList.add('edit');
+    optionEdit.classList.add('popup-link');
     optionEdit.href='#'
     optionEdit.innerText='Edit'
+    optionEdit.dataset.ref ='update-note';
+
+
+    optionEdit.addEventListener('click',(editEvent)=>{
+       let  updatePopup = document.getElementById(editEvent.target.dataset.ref);
+
+         Popup.openPopup(updatePopup);
+
+         let  fields = editEvent.target.closest('.card-content');
+
+         let   updateHeader=document.getElementById('header-input-update');
+         let  headerFromNote=fields.children[0];
+         updateHeader.value=headerFromNote.innerText
+
+
+         let updateText=document.getElementById('content-input-update');
+         let textFromNote=fields.children[1];
+         updateText.value=textFromNote.innerText
+
+
+
+        let noteId = parseInt(fields.children[2].innerText);
+
+        let date = fields.children[3].innerText;
+
+        updateButton.addEventListener('click',(updateEvent)=>{
+
+            headerFromNote.innerText = updateHeader.value;
+
+            textFromNote.innerText =updateText.value;
+
+            let note = {
+                noteId:noteId,
+                header:headerFromNote.innerText,
+                text:textFromNote.innerText,
+                date:new Date(date)
+            }
+
+
+            Popup.closePopup(updateEvent.target.closest('.popup'))
+
+            fetch('http://localhost:8080/api/note/'+noteId, {
+                method:'PUT',
+                headers: {'Content-type': 'application/json; charset=UTF-8'},
+                body: JSON.stringify(note)
+            }).then(resp=>resp.json());
+
+
+
+
+            updateEvent.preventDefault();
+        });
+
+        editEvent.preventDefault();
+    })
 
 
     let h2 = document.createElement('h2');
@@ -83,25 +123,19 @@ export function createNote(id,header,text,date  = new Date()){
     date= new Date(date);
     dateEl.innerText=''+date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
 
-    optionDelete.append(noteId);
     options.append(optionDelete);
     options.append(optionEdit);
 
     cardCont.append(h2);
     cardCont.append(p);
+    cardCont.append(noteId);
     cardCont.append(dateEl);
     cardCont.append(options);
 
     card.append(cardCont);
-
     column.append(card);
-
     row.append(column);
-
     main.append(row);
-
-
-
 }
 
 getListOfNotes();

@@ -8,5 +8,7 @@ import java.util.List;
 
 @Repository
 public interface NoteRepository extends JpaRepository<Note,Integer> {
-public List<Note> findNotesByHeaderContaining(String substring);
+List<Note> findNotesByHeaderContaining(String substring);
+
+
 }

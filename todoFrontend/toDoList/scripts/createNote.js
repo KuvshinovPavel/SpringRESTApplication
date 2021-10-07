@@ -19,7 +19,6 @@ createButton.addEventListener('click',function (e) {
         body: JSON.stringify(note)
     }).then(response=>console.log(response));
 
-
     createNote(0,header.value,content.value);
     let popup = createButton.closest('.popup')
     popup.style.visibility='hidden';

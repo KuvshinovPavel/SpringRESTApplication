@@ -15,7 +15,6 @@
 <header>
     <div class="d1">
         <form>
-
             <div class="inline">
                 <input type="text" id="search-input" placeholder="Search...">
             </div>
@@ -25,9 +24,7 @@
             </div>
 
             <div class="inline">
-                <button data-ref="firstPopup" class="headerButtons addButton popup-link" id="call-popup"><i class="fa fa-plus" ></i></button>
-
-
+                <button data-ref="create-note" class="headerButtons addButton popup-link" id="call-popup"><i class="fa fa-plus" ></i></button>
             </div>
         </form>
     </div>
@@ -44,31 +41,10 @@
     </select>
 </div>
 
-
 <main>
-
-
-
-<!--    <div class="row">-->
-<!--        <div class="column">-->
-<!--            <div class="card">-->
-<!--                <div class="card-content">-->
-<!--                    <h2>Сколько у кошек жизней?</h2>-->
-<!--                    <img src="" alt="cat">-->
-<!--                    <p>Мифы связаны с ловкостью кошек, с помощью которой-->
-<!--                        им удается избежать опасных ситуаций.</p>-->
-<!--                    <div class="options">-->
-<!--                        <a class="option delete" href="#">Delete</a>-->
-<!--                        <a class="option edit" href="#">Edit</a>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-
 </main>
 
-<div id="firstPopup" class="popup">
+<div id="create-note" class="popup">
     <div class="popup-body">
         <div class="popup-content">
             <div class="form-style-5">
@@ -95,8 +71,35 @@
     </div>
 </div>
 
+<div id="update-note" class="popup">
+    <div class="popup-body">
+        <div class="popup-content">
+            <div class="form-style-5">
+                <form>
+                    <fieldset>
+                        <legend><span>Header</span></legend>
+                        <label>
+                            <input type="text" name="field1"  id="header-input-update">
+                        </label>
+                    </fieldset>
+                    <fieldset>
+                        <legend><span>Content</span></legend>
+                        <label>
+                            <textarea name="field3"  id="content-input-update" ></textarea>
+                        </label>
+                    </fieldset>
+                    <div class="popup-options">
+                        <input type="button" class="popup-option popup-close" value="Cancel"/>
+                        <input type="submit"  class="popup-option submit" id="update" value="Update"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
-<script src="scripts/popup.js"></script>
+
+<script src="scripts/popups.js" type="module"></script>
 <script src="scripts/notes.js" type="module"></script>
 <script src="scripts/sorting.js"></script>
 <script src="scripts/createNote.js" type="module"></script>

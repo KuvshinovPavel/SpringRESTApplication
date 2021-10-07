@@ -14,6 +14,7 @@ public class NoteController {
     private final NoteService noteService;
 
 
+
     @Autowired
     public NoteController(NoteService noteService) {
         this.noteService = noteService;
@@ -28,6 +29,9 @@ public class NoteController {
     @GetMapping("/{substring}")
     @CrossOrigin
     public List<Note> showNote(@PathVariable("substring") String substring){
+
+
+
         return noteService.showNoteBySubstring(substring);
     }
 
@@ -43,7 +47,11 @@ public class NoteController {
         noteService.deleteNote(noteId);
     }
 
-
+    @PutMapping("/{noteId}")
+    @CrossOrigin
+    public Note updateNote(@PathVariable("noteId") Integer noteId,@RequestBody Note note) {
+        return noteService.updateNote(noteId,note);
+    }
 
 
 

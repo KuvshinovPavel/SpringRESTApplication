@@ -33,4 +33,9 @@ public class NoteService {
     public List<Note> showNoteBySubstring(String substring) {
         return noteRepository.findNotesByHeaderContaining(substring);
     }
+
+    public Note updateNote(Integer noteId,Note note) {
+        note.setNoteId(noteId);
+        return noteRepository.save(note);
+    }
 }

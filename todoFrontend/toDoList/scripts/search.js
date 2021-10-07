@@ -2,6 +2,7 @@ import {createNote} from "./notes.js";
 
 let searchBtn = document.getElementById('search-button');
 let searchInput = document.getElementById('search-input');
+
 searchBtn.addEventListener('click',(e)=>{
     main.innerHTML='';
     fetch('http://localhost:8080/api/note/'+searchInput.value)
